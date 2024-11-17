@@ -10,7 +10,8 @@ export const registerUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
-    throw new Error('All fiedls are mandatory!');
+    res.status(400)
+    throw new Error('All fields are mandatory!');
   }
 
   const userAvailable = await User.findOne({ email });
